@@ -1,13 +1,13 @@
-package princ.windfullsc;
+package princ.windfullsc.client;
 
 import net.minecraft.client.Minecraft;
 import org.lwjgl.glfw.GLFW;
 
 public class WindFullscHandler {
-    private static final long getWindow = Minecraft.getInstance().getWindow().getWindow();
+    private static final long getWindow = Minecraft.getInstance().getWindow().handle();
     private static boolean isWindowMaximized;
 
-    public static void toggle() {
+    public static void activate() {
         isWindowMaximized = GLFW.glfwGetWindowAttrib(getWindow, GLFW.GLFW_MAXIMIZED) == GLFW.GLFW_TRUE;
 
         if (isWindowMaximized) {
@@ -20,15 +20,12 @@ public class WindFullscHandler {
 
     public static void restore() {
         GLFW.glfwSetWindowAttrib(getWindow, GLFW.GLFW_DECORATED, GLFW.GLFW_TRUE);
-
-        if (!isWindowMaximized) {
-            GLFW.glfwRestoreWindow(getWindow);
-        }
+        if (!isWindowMaximized) GLFW.glfwRestoreWindow(getWindow);
     }
 
     public static void adjust() {
         if (GLFW.glfwGetWindowAttrib(getWindow, GLFW.GLFW_DECORATED) == GLFW.GLFW_TRUE) {
-            toggle();
+            activate();
         } else if (GLFW.glfwGetWindowAttrib(getWindow, GLFW.GLFW_DECORATED) == GLFW.GLFW_FALSE) {
             restore();
         }

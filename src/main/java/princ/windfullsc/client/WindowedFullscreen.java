@@ -1,4 +1,4 @@
-package princ.windfullsc;
+package princ.windfullsc.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
@@ -8,23 +8,23 @@ import net.minecraft.client.KeyMapping;
 import org.lwjgl.glfw.GLFW;
 
 public class WindowedFullscreen implements ClientModInitializer {
-	private boolean wasWindowedFullscreenKeyPressed;
+	private boolean bl;
 
 	private final KeyMapping windowedFullscreenKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-			"key.windowed.fullscreen",
+			"key.misc.windfullsc",
 			InputConstants.Type.KEYSYM,
 			GLFW.GLFW_KEY_F12,
-			KeyMapping.CATEGORY_MISC
+			KeyMapping.Category.MISC
 	));
 
 	@Override
 	public void onInitializeClient() {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			boolean isWindowedFullscreenKeyPressed = InputConstants.isKeyDown(client.getWindow().getWindow(), InputConstants.getKey(windowedFullscreenKey.saveString()).getValue());
-			if (isWindowedFullscreenKeyPressed && !wasWindowedFullscreenKeyPressed) {
+			boolean wasPressed = InputConstants.isKeyDown(client.getWindow(), InputConstants.getKey(windowedFullscreenKey.saveString()).getValue());
+			if (wasPressed && !bl) {
 				WindFullscHandler.adjust();
 			}
-			wasWindowedFullscreenKeyPressed = isWindowedFullscreenKeyPressed;
+			bl = wasPressed;
 		});
 	}
 }
