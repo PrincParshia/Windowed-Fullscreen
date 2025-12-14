@@ -9,11 +9,8 @@ public class WindFullscHandler {
 
     public static void activate() {
         isWindowMaximized = GLFW.glfwGetWindowAttrib(getWindow, GLFW.GLFW_MAXIMIZED) == GLFW.GLFW_TRUE;
-
-        if (isWindowMaximized) {
-            GLFW.glfwSetWindowAttrib(getWindow, GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
-        } else {
-            GLFW.glfwSetWindowAttrib(getWindow, GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
+        GLFW.glfwSetWindowAttrib(getWindow, GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
+        if (!isWindowMaximized) {
             GLFW.glfwMaximizeWindow(getWindow);
         }
     }
