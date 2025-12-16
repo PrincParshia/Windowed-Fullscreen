@@ -1,0 +1,12 @@
+{
+	"required": false,
+	"package": "princ.windfullsc.client.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

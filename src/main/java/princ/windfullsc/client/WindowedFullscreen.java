@@ -5,26 +5,47 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
-import org.lwjgl.glfw.GLFW;
+
+import static princ.windfullsc.client.WindFullScHandler.*;
 
 public class WindowedFullscreen implements ClientModInitializer {
-	private boolean bl;
+	public static final String NAMESPACE = "windowed-fullscreen";
 
-	private final KeyMapping windowedFullscreenKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-			"key.misc.windfullsc",
-			InputConstants.Type.KEYSYM,
-			GLFW.GLFW_KEY_F12,
-			KeyMapping.Category.MISC
-	));
+    private final KeyMapping.Category CATEGORY = KeyMapping.Category.MISC;
+    private final KeyMapping windowedFullscreenKey = new KeyMapping(
+            "key." + CATEGORY.id().getPath() + "." + "windowed-fullscreen",
+            InputConstants.Type.KEYSYM,
+            InputConstants.KEY_F12,
+            CATEGORY
+    );
+    private final KeyMapping borderlessWindowedKey = new KeyMapping(
+            "key." + CATEGORY.id().getPath() + "." + "borderless-windowed",
+            InputConstants.Type.KEYSYM,
+            InputConstants.KEY_F10,
+            CATEGORY
+    );
+
+    private boolean aBoolean;
+    private boolean bBoolean;
 
 	@Override
 	public void onInitializeClient() {
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			boolean wasPressed = InputConstants.isKeyDown(client.getWindow(), InputConstants.getKey(windowedFullscreenKey.saveString()).getValue());
-			if (wasPressed && !bl) {
-				WindFullscHandler.adjust();
-			}
-			bl = wasPressed;
-		});
+        KeyBindingHelper.registerKeyBinding(windowedFullscreenKey);
+        KeyBindingHelper.registerKeyBinding(borderlessWindowedKey);
+        ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
+            boolean wasWfKeyPressed = InputConstants.isKeyDown(minecraft.getWindow(), InputConstants.getKey(windowedFullscreenKey.saveString()).getValue());
+            boolean wasBwKeyPressed = InputConstants.isKeyDown(minecraft.getWindow(), InputConstants.getKey(borderlessWindowedKey.saveString()).getValue());
+
+            if (wasWfKeyPressed && !aBoolean && !minecraft.getWindow().isFullscreen()) {
+                toggleWindowedFullscreen();
+            }
+
+            if (wasBwKeyPressed && !bBoolean && !minecraft.getWindow().isFullscreen()) {
+                toggleBorderlessWindowed();
+            }
+
+            aBoolean = wasWfKeyPressed;
+            bBoolean = wasBwKeyPressed;
+        });
 	}
 }
