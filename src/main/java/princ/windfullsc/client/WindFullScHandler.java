@@ -24,7 +24,7 @@ public class WindFullScHandler {
     private static int windowY;
 
     private static void captureWindowAttributes() {
-        wasWindowMaximized = GLFW.glfwGetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_MAXIMIZED) == GLFW.GLFW_TRUE;
+        wasWindowMaximized = GLFW.glfwGetWindowAttrib(getWindow().handle(), GLFW.GLFW_MAXIMIZED) == GLFW.GLFW_TRUE;
         windowWidth = getWindow().getWidth();
         windowHeight = getWindow().getHeight();
         windowX = getWindow().getX();
@@ -33,41 +33,41 @@ public class WindFullScHandler {
 
     public static void activateWindowedFullScreen() {
         captureWindowAttributes();
-        if (wasWindowMaximized) GLFW.glfwSetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_MAXIMIZED, GLFW.GLFW_FALSE);
-        GLFW.glfwSetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
-        GLFW.glfwSetWindowSize(getWindow().getWindow(), getMonitorSize(true), getMonitorSize(false));
-        GLFW.glfwSetWindowPos(getWindow().getWindow(), 0, 0);
+        if (wasWindowMaximized) GLFW.glfwSetWindowAttrib(getWindow().handle(), GLFW.GLFW_MAXIMIZED, GLFW.GLFW_FALSE);
+        GLFW.glfwSetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
+        GLFW.glfwSetWindowSize(getWindow().handle(), getMonitorSize(true), getMonitorSize(false));
+        GLFW.glfwSetWindowPos(getWindow().handle(), 0, 0);
     }
 
     public static void activateBorderlessWindowed() {
         captureWindowAttributes();
-        GLFW.glfwSetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
-        if (!wasWindowMaximized) GLFW.glfwMaximizeWindow(getWindow().getWindow());
+        GLFW.glfwSetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
+        if (!wasWindowMaximized) GLFW.glfwMaximizeWindow(getWindow().handle());
     }
 
     public static void restoreWindow() {
-        GLFW.glfwSetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED, GLFW.GLFW_TRUE);
+        GLFW.glfwSetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED, GLFW.GLFW_TRUE);
         if (!wasWindowMaximized) {
-            GLFW.glfwRestoreWindow(getWindow().getWindow());
-            GLFW.glfwSetWindowSize(getWindow().getWindow(), windowWidth, windowHeight);
-            GLFW.glfwSetWindowPos(getWindow().getWindow(), windowX, windowY);
+            GLFW.glfwRestoreWindow(getWindow().handle());
+            GLFW.glfwSetWindowSize(getWindow().handle(), windowWidth, windowHeight);
+            GLFW.glfwSetWindowPos(getWindow().handle(), windowX, windowY);
             return;
         }
-        GLFW.glfwMaximizeWindow(getWindow().getWindow());
+        GLFW.glfwMaximizeWindow(getWindow().handle());
     }
 
     public static void toggleWindowedFullscreen() {
-        if (GLFW.glfwGetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED) == GLFW.GLFW_TRUE) {
+        if (GLFW.glfwGetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED) == GLFW.GLFW_TRUE) {
             activateWindowedFullScreen();
-        } else if (GLFW.glfwGetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED) == GLFW.GLFW_FALSE) {
+        } else if (GLFW.glfwGetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED) == GLFW.GLFW_FALSE) {
             restoreWindow();
         }
     }
 
     public static void toggleBorderlessWindowed() {
-        if (GLFW.glfwGetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED) == GLFW.GLFW_TRUE) {
+        if (GLFW.glfwGetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED) == GLFW.GLFW_TRUE) {
             activateBorderlessWindowed();
-        } else if (GLFW.glfwGetWindowAttrib(getWindow().getWindow(), GLFW.GLFW_DECORATED) == GLFW.GLFW_FALSE) {
+        } else if (GLFW.glfwGetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED) == GLFW.GLFW_FALSE) {
             restoreWindow();
         }
     }
