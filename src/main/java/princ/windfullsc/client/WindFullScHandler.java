@@ -33,6 +33,7 @@ public class WindFullScHandler {
 
     public static void activateWindowedFullScreen() {
         captureWindowAttributes();
+        if (wasWindowMaximized) GLFW.glfwSetWindowAttrib(getWindow().handle(), GLFW.GLFW_MAXIMIZED, GLFW.GLFW_FALSE);
         GLFW.glfwSetWindowAttrib(getWindow().handle(), GLFW.GLFW_DECORATED, GLFW.GLFW_FALSE);
         GLFW.glfwSetWindowSize(getWindow().handle(), getMonitorSize(true), getMonitorSize(false));
         GLFW.glfwSetWindowPos(getWindow().handle(), 0, 0);
