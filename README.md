@@ -4,18 +4,20 @@
 ---
 ## 📗 DESCRIPTION
 
-Windowed Fullscreen is a mod that allows you to hide the window title bar and access your taskbar/panel while in fullscreen mode. It’s perfect for players who want a cleaner fullscreen experience without losing the convenience of interacting with other system elements. This feature also known as Borderless Window or Borderless Fullscreen.
+Windowed Fullscreen is a mod that allows you to hide the window title bar and access your taskbar/panel while in fullscreen mode. It’s perfect for players who want a cleaner fullscreen experience without losing the convenience of interacting with other system elements. This feature also known as Borderless Windowed or Borderless Fullscreen.
 
 ## ✨ KEY FEATURES
 
-* Removes window border giving the feel of fullscreen while maximized.
+* **Windowed Fullscreen;** Maximizes the window to the monitor and hides the system taskbar when the window is focused (even if the taskbar is set to be always visible).
 
-* Allows to access taskbar and other apps over minecraft window.
+* **Borderless Windowed;** Maximizes the window to the available screen space. Similar to standard window maximization, but with a borderless appearance.
+
+---
+| **Windowed Fullscreen** | **Borderless Windowed** |
+|---|---|
+| ![](https://raw.githubusercontent.com/PrincParshia/Windowed-Fullscreen/refs/heads/assets/windowed-fullscreen.png) | ![](https://raw.githubusercontent.com/PrincParshia/Windowed-Fullscreen/refs/heads/assets/borderless-windowed.png) |
 
 ## 🧩 USAGE
 
 * Press `F12` to toggle the Windowed Fullscreen mode.
 * Press `F10` to toggle the Borderless Windowed mode.
-
----
-![](https://cdn.modrinth.com/data/tiZ50Qti/images/8b8706bc9872257a00179bb396c31f4f29117920.png)
