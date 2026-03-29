@@ -1,4 +1,5 @@
 {
-    "key.misc.windowed-fullscreen": "Windowed Fullscreen",
-    "key.misc.borderless-windowed": "Borderless Windowed"
+    "key.category.windowed-fullscreen.default": "Windowed Fullscreen",
+    "key.windowed-fullscreen.windowed_fullscreen": "Toggle Windowed Fullscreen",
+    "key.windowed-fullscreen.borderless_windowed": "Toggle Borderless Windowed"
 }

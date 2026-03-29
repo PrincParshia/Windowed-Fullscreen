@@ -3,12 +3,15 @@
 	"id": "windowed-fullscreen",
 	"version": "${version}",
 	"name": "Windowed Fullscreen",
-	"description": "Enables windowed fullscreen mode, allowing for a cleaner experience while retaining access to the taskbar and panel or other apps.",
+	"description": "Enables windowed fullscreen mode",
 	"authors": [
 		"PrincParshia"
 	],
+	"contact": {
+		"sources": "https://github.com/PrincParshia/Windowed-Fullscreen"
+	},
 	"license": "All Rights Reserved",
-	"icon": "pack.png",
+	"icon": "windowed-fullscreen.icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
@@ -16,12 +19,12 @@
 		]
 	},
 	"mixins": [
-		"windowed-fullscreen.client.mixins.json"
+		"windowed-fullscreen.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.0",
-		"minecraft": ">=1.21.9",
-		"java": ">=21",
+		"fabricloader": ">=0.18.5",
+		"minecraft": "~26.1",
+		"java": ">=25",
 		"fabric-api": "*"
 	}
 }
