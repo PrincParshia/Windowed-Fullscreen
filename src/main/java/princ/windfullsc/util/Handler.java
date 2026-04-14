@@ -59,6 +59,7 @@ public class Handler {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     int getMonitorSize(Window window, int i) {
         if (i == 0) return window.findBestMonitor().getCurrentMode().getWidth();
         else return window.findBestMonitor().getCurrentMode().getHeight();
